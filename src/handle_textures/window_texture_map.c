@@ -10,20 +10,32 @@
 #include <stdio.h>
 #include <math.h>
 
-int initialize(sfRenderWindow *window, sfTexture *mapTexture,
-    sfTexture *characterTexture, sfVideoMode mode)
+sfRenderWindow *window_init(sfVideoMode mode)
 {
+    sfRenderWindow *window;
+
     window = sfRenderWindow_create(mode, "Game Window", sfResize | sfClose, NULL);
     if (!window)
-        return -84;
+        exit(84);
+    return window;
+}
+
+sfTexture *map_texture_init(void)
+{
+    sfTexture *mapTexture;
 
     mapTexture = sfTexture_createFromFile("assets/map_v1.png", NULL);
     if (!mapTexture)
-        return -84;
+        exit (84);
+    return mapTexture;
+}
+
+sfTexture *character_texture_init(void)
+{
+    sfTexture *characterTexture;
 
     characterTexture = sfTexture_createFromFile("assets/skinsoldat4.png", NULL);
     if(!characterTexture)
-        return -84;
-
-    return 0;
+        exit(84);
+    return characterTexture;
 }
