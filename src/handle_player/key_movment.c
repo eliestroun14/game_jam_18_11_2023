@@ -5,24 +5,48 @@
 ** key_movment
 */
 
+#include "../../include/game_jam.h"
 #include <SFML/Graphics.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
 
-void check_movment(sfVector2f *characterPosition, sfSprite *characterSprite)
+void check_movement(sfVector2f *characterPosition, sfSprite *characterSprite, sfImage *collisionMap)
 {
+    float moveAmount = 2.0f; // Adjust movement speed as needed
+
     if (sfKeyboard_isKeyPressed(sfKeyLeft)) {
-        characterPosition->x -= 2.0f; // Adjust the character's position
-        sfSprite_setPosition(characterSprite, *characterPosition); // Update the character's position
+        sfVector2f nextPosition = *characterPosition;
+        nextPosition.x -= moveAmount;
+
+        // Check collision at the next intended position
+        if (!checkCollision(nextPosition, collisionMap)) {
+            *characterPosition = nextPosition;
+            sfSprite_setPosition(characterSprite, *characterPosition);
+        }
     } else if (sfKeyboard_isKeyPressed(sfKeyRight)) {
-        characterPosition->x += 2.0f;
-        sfSprite_setPosition(characterSprite, *characterPosition);
+        sfVector2f nextPosition = *characterPosition;
+        nextPosition.x += moveAmount;
+
+        if (!checkCollision(nextPosition, collisionMap)) {
+            *characterPosition = nextPosition;
+            sfSprite_setPosition(characterSprite, *characterPosition);
+        }
     } else if (sfKeyboard_isKeyPressed(sfKeyUp)) {
-        characterPosition->y -= 2.5f;
-        sfSprite_setPosition(characterSprite, *characterPosition);
+        sfVector2f nextPosition = *characterPosition;
+        nextPosition.y -= moveAmount;
+
+        if (!checkCollision(nextPosition, collisionMap)) {
+            *characterPosition = nextPosition;
+            sfSprite_setPosition(characterSprite, *characterPosition);
+        }
     } else if (sfKeyboard_isKeyPressed(sfKeyDown)) {
-        characterPosition->y += 2.5f;
-        sfSprite_setPosition(characterSprite, *characterPosition);
+        sfVector2f nextPosition = *characterPosition;
+        nextPosition.y += moveAmount;
+
+        if (!checkCollision(nextPosition, collisionMap)) {
+            *characterPosition = nextPosition;
+            sfSprite_setPosition(characterSprite, *characterPosition);
+        }
     }
 }

@@ -16,17 +16,22 @@
     #define M_PI 3.14159265358979323846
 // anex
 float calculateAngle(sfVector2f point1, sfVector2f point2);
+
 // handle textures
 sfRenderWindow *window_init(sfVideoMode mode);
 sfTexture *map_texture_init(void);
 sfTexture *character_texture_init(void);
 
-// handle player movment
-void check_movment(sfVector2f *characterPosition, sfSprite *characterSprite);
+// handle player movement
+void check_movement(sfVector2f *characterPosition,
+    sfSprite *characterSprite, sfImage *collisionMap);
 
 // handle player facing mouse
 void handle_mouse(sfRenderWindow *window, sfVector2i *mousePos, sfVector2f *mousePosWorld,
     sfSprite *characterSprite, float *angle);
 void set_origin_character(sfTexture *characterTexture, sfSprite *characterSprite);
+
+// handle collisions
+int checkCollision(sfVector2f position, sfImage* collisionMap);
 
 #endif /* !GAME_JAM_H_ */
