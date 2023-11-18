@@ -36,7 +36,7 @@ int checkCollision(sfVector2f position, sfImage* collisionMap);
 
 // menu
 void menu(sfRenderWindow *window);
-void if_click_quit(sfRenderWindow *window, sfEvent event);
+void if_click_quit(sfRenderWindow *window, sfEvent event, int *gamestarted);
 void if_click_play(sfRenderWindow *window, sfEvent event, int *gameStarted);
 
 #endif /* !GAME_JAM_H_ */

@@ -9,23 +9,21 @@
 #include <SFML/Graphics.h>
 #include <stdio.h>
 
-void if_click_play(sfRenderWindow *window, sfEvent event, int *gameStarted) {
+void if_click_play(sfRenderWindow *window, sfEvent event, int *gamestarted) {
     sfVector2i mouse = sfMouse_getPositionRenderWindow(window);
     if (mouse.x >= 508 && mouse.x <= 761 && mouse.y >= 485 && mouse.y <= 554) {
         if (event.type == sfEvtMouseButtonPressed) {
-            *gameStarted = 1;
+            *gamestarted = 1;
         }
     }
 }
 
-void if_click_quit(sfRenderWindow *window, sfEvent event)
+void if_click_quit(sfRenderWindow *window, sfEvent event, int *gamestarted)
 {
     sfVector2i mouse = sfMouse_getPositionRenderWindow(window);
-    if(mouse.x >= 508 && mouse.x <= 761) {
-        if (mouse.y >= 627 && mouse.y <= 690) {
-            if (event.type == sfEvtMouseButtonPressed) {
-                sfRenderWindow_close(window);
-            }
+    if (mouse.x >= 508 && mouse.x <= 761 && mouse.y >= 627 && mouse.y <= 690) {
+        if (event.type == sfEvtMouseButtonPressed) {
+            *gamestarted = 1;
         }
     }
 }
@@ -59,7 +57,7 @@ void menu(sfRenderWindow *window)
     sfSprite_setScale(exit_sprite, scale_button02);
     sfSprite_setPosition(exit_sprite, pos_button02);
 
-    int gameStarted = 0;
+    int gamestarted = 0;
     sfEvent event;
 
     while (sfRenderWindow_isOpen(window)) {
@@ -73,8 +71,8 @@ void menu(sfRenderWindow *window)
         sfRenderWindow_drawSprite(window, menu_sprite, NULL);
         sfRenderWindow_drawSprite(window, start_sprite, NULL);
         sfRenderWindow_drawSprite(window, exit_sprite, NULL);
-        if_click_play(window, event, &gameStarted);
-        if_click_quit(window, event);
+        if_click_play(window, event, &gamestarted);
+        if_click_quit(window, event, &gamestarted);
         sfRenderWindow_display(window);
     }
 
