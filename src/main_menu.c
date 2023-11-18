@@ -14,6 +14,7 @@ void if_click_play(sfRenderWindow *window, sfEvent event, int *gamestarted) {
     if (mouse.x >= 508 && mouse.x <= 761 && mouse.y >= 485 && mouse.y <= 554) {
         if (event.type == sfEvtMouseButtonPressed) {
             *gamestarted = 1;
+            sfRenderWindow_close(window);
         }
     }
 }
@@ -23,13 +24,16 @@ void if_click_quit(sfRenderWindow *window, sfEvent event, int *gamestarted)
     sfVector2i mouse = sfMouse_getPositionRenderWindow(window);
     if (mouse.x >= 508 && mouse.x <= 761 && mouse.y >= 627 && mouse.y <= 690) {
         if (event.type == sfEvtMouseButtonPressed) {
-            *gamestarted = 1;
+            *gamestarted = 0;
+            sfRenderWindow_close(window);
         }
     }
 }
 
-void menu(sfRenderWindow *window)
+void menu(sfRenderWindow *window, int *gamestarted)
 {
+    sfEvent event;
+
     sfTexture *main_menu = sfTexture_createFromFile("assets/main_menu.png", NULL);
     sfSprite *menu_sprite = sfSprite_create();
 
@@ -57,9 +61,6 @@ void menu(sfRenderWindow *window)
     sfSprite_setScale(exit_sprite, scale_button02);
     sfSprite_setPosition(exit_sprite, pos_button02);
 
-    int gamestarted = 0;
-    sfEvent event;
-
     while (sfRenderWindow_isOpen(window)) {
         while (sfRenderWindow_pollEvent(window, &event)) {
             if (event.type == sfEvtClosed) {
@@ -71,8 +72,8 @@ void menu(sfRenderWindow *window)
         sfRenderWindow_drawSprite(window, menu_sprite, NULL);
         sfRenderWindow_drawSprite(window, start_sprite, NULL);
         sfRenderWindow_drawSprite(window, exit_sprite, NULL);
-        if_click_play(window, event, &gamestarted);
-        if_click_quit(window, event, &gamestarted);
+        if_click_play(window, event, gamestarted);
+        if_click_quit(window, event, gamestarted);
         sfRenderWindow_display(window);
     }
 

@@ -35,7 +35,7 @@ void set_origin_character(sfTexture *characterTexture, sfSprite *characterSprite
 int checkCollision(sfVector2f position, sfImage* collisionMap);
 
 // menu
-void menu(sfRenderWindow *window);
+void menu(sfRenderWindow *window, int *gamestarted);
 void if_click_quit(sfRenderWindow *window, sfEvent event, int *gamestarted);
 void if_click_play(sfRenderWindow *window, sfEvent event, int *gameStarted);
 

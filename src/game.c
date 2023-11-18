@@ -68,13 +68,15 @@ void game()
 
 int main(void)
 {
+    int game_status = 0;
     sfVideoMode mode = {1184, 992, 64};
     sfRenderWindow *window = window_init(mode);
 
     while (sfRenderWindow_isOpen(window)) {
-            menu(window);
+        menu(window, &game_status);
+        if (game_status)
             game();
-        }
+    }
     sfRenderWindow_destroy(window);
     return 0;
 }
