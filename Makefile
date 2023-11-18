@@ -16,6 +16,7 @@ SRC		+= ./src/handle_player/handle_mouse.c
 SRC		+= ./src/main_menu.c
 SRC		+= ./src/resume_menu/display_buttons.c
 SRC		+= ./src/resume_menu/resume_menu.c
+SRC		+= ./src/resume_menu/check_pressed_button.c
 
 LDFLAGS	= -L. -I include/
 

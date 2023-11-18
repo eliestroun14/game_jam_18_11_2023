@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include <math.h>
 
-void game()
+void game(int *gamestatus)
 {
     sfVideoMode mode = {1000, 838, 64};
     sfRenderWindow *window = window_init(mode);
@@ -48,7 +48,7 @@ void game()
                     sfRenderWindow_close(window);
                 }
                 if (event.type == sfEvtKeyPressed && sfKeyboard_isKeyPressed(sfKeyEscape))
-                    resume_menu(window);
+                    resume_menu(window, gamestatus);
             }
 
             handle_mouse(window, &mousePos, &mousePosWorld, characterSprite, &angle);
@@ -80,7 +80,7 @@ int main(void)
         if (!game_status)
             menu(window, &game_status);
         if (game_status)
-            game();
+            game(&game_status);
     }
     sfRenderWindow_destroy(window);
     return 0;

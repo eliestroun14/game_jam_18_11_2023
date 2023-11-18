@@ -40,7 +40,7 @@ void display_restart_button(sfRenderWindow *window, sfVector2f scale, sfVector2f
 
 void display_menu_button(sfRenderWindow *window, sfVector2f scale, sfVector2f pos)
 {
-    sfTexture *menu = sfTexture_createFromFile("assets/resume_menu/restart.png", NULL);
+    sfTexture *menu = sfTexture_createFromFile("assets/resume_menu/menu.png", NULL);
     sfSprite *menu_sprite = sfSprite_create();
     
     sfSprite_setTexture(menu_sprite, menu, sfTrue);
