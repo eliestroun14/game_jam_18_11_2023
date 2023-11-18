@@ -5,7 +5,11 @@
 ** game
 */
 
+#include "../include/game_jam.h"
 #include <SFML/Graphics.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <math.h>
 
 int main() {
     sfVideoMode mode = {1200, 1000, 64};
@@ -13,12 +17,13 @@ int main() {
     sfTexture *mapTexture;
     sfSprite *mapSprite;
     sfEvent event;
+    sfTexture *characterTexture;
+    sfSprite *characterSprite;
 
-    window = sfRenderWindow_create(mode, "Game Window", sfResize | sfClose, NULL);
-    if (!window) return -1;
-
-    mapTexture = sfTexture_createFromFile("assets/map_v1.png", NULL);
-    if (!mapTexture) return -1;
+    if (initialize(&window, &mapTexture, &characterTexture, mode) == 84) {
+        printf("an error occured while initializing");
+        return 84;
+    }
 
     mapSprite = sfSprite_create();
 
