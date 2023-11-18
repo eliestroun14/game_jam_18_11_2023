@@ -7,7 +7,7 @@
 
 NAME	= jam_game
 
-#SRC		=
+SRC		= ./src/game.c
 
 LDFLAGS	= -L.  -I include/
 
@@ -27,15 +27,3 @@ fclean: clean
 
 re: fclean all
 .PHONY:re
-
-
-
-
-
-
-
-
-
-
-
-gcc [insert file name] -L /usr/lib/ -I/usr/include -lcsfml-graphics -lcsfml-window -lcsfml-system -lm
