@@ -21,7 +21,7 @@ int initialize(sfRenderWindow *window, sfTexture *mapTexture,
     if (!mapTexture)
         return -84;
 
-    characterTexture = sfTexture_createFromFile("assets/character.png", NULL);
+    characterTexture = sfTexture_createFromFile("assets/skinsoldat4.png", NULL);
     if(!characterTexture)
         return -84;
 
