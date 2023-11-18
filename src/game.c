@@ -73,7 +73,8 @@ int main(void)
     sfRenderWindow *window = window_init(mode);
 
     while (sfRenderWindow_isOpen(window)) {
-        menu(window, &game_status);
+        if (!game_status)
+            menu(window, &game_status);
         if (game_status)
             game();
     }
