@@ -19,10 +19,10 @@ void check_movment(sfVector2f *characterPosition, sfSprite *characterSprite)
         characterPosition->x += 2.0f;
         sfSprite_setPosition(characterSprite, *characterPosition);
     } else if (sfKeyboard_isKeyPressed(sfKeyUp)) {
-        characterPosition->y -= 2.0f;
+        characterPosition->y -= 2.5f;
         sfSprite_setPosition(characterSprite, *characterPosition);
     } else if (sfKeyboard_isKeyPressed(sfKeyDown)) {
-        characterPosition->y += 2.0f;
+        characterPosition->y += 2.5f;
         sfSprite_setPosition(characterSprite, *characterPosition);
     }
 }
