@@ -13,7 +13,7 @@
 
 int main(void)
 {
-    sfVideoMode mode = {1200, 1000, 64};
+    sfVideoMode mode = {1000, 838, 64};
     sfRenderWindow *window = window_init(mode);
     sfTexture *mapTexture = map_texture_init();
     sfTexture *characterTexture = character_texture_init();
@@ -38,7 +38,7 @@ int main(void)
     sfVector2f characterPosition = {500.0f, 200.0f};
     sfSprite_setPosition(characterSprite, characterPosition);
 
-    sfVector2f scaleFactor = {0.75f, 0.75f};
+    sfVector2f scaleFactor = {0.7f, 0.7f};
     sfSprite_setScale(characterSprite, scaleFactor);
     set_origin_character(characterTexture, characterSprite);
 

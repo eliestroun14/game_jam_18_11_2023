@@ -24,7 +24,7 @@ sfTexture *map_texture_init(void)
 {
     sfTexture *mapTexture;
 
-    mapTexture = sfTexture_createFromFile("assets/collisions_map.png", NULL);
+    mapTexture = sfTexture_createFromFile("assets/map_v2.png", NULL);
     if (!mapTexture)
         exit (84);
     return mapTexture;
