@@ -11,6 +11,7 @@ SRC		= ./src/game.c
 SRC		+= ./src/handle_textures/window_texture_map.c
 SRC		+= ./src/handle_player/key_movment.c
 SRC		+= ./src/anex/calculate_angle.c
+SRC		+=./src/handle_player/handle_mouse.c
 
 LDFLAGS	= -L. -I include/
 

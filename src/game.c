@@ -19,6 +19,9 @@ int main() {
     sfSprite *characterSprite;
     sfSprite *mapSprite;
     sfEvent event;
+    sfVector2i mousePos;
+    sfVector2f mousePosWorld;
+    float angle;
 
     mapSprite = sfSprite_create();
     characterSprite = sfSprite_create();
@@ -33,6 +36,7 @@ int main() {
 
     sfVector2f scaleFactor = {0.75f, 0.75f};
     sfSprite_setScale(characterSprite, scaleFactor);
+    set_origin_character(characterTexture, characterSprite);
 
     while (sfRenderWindow_isOpen(window)) {
             while (sfRenderWindow_pollEvent(window, &event)) {
@@ -40,11 +44,9 @@ int main() {
                     sfRenderWindow_close(window);
                 }
             }
-            sfVector2i mousePos = sfMouse_getPositionRenderWindow(window);
-            sfVector2f mousePosWorld = sfRenderWindow_mapPixelToCoords(window, mousePos, NULL);
+            handle_mouse(window, &mousePos, &mousePosWorld, characterSprite, &angle);
 
-            float angle = calculateAngle(sfSprite_getPosition(characterSprite), mousePosWorld);
-            sfSprite_setRotation(characterSprite, angle + 90);
+            sfSprite_setRotation(characterSprite, angle + 270);
 
             check_movment(&characterPosition, characterSprite);
 

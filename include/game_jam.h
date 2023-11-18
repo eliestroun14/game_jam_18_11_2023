@@ -21,7 +21,12 @@ sfRenderWindow *window_init(sfVideoMode mode);
 sfTexture *map_texture_init(void);
 sfTexture *character_texture_init(void);
 
-// handle player
+// handle player movment
 void check_movment(sfVector2f *characterPosition, sfSprite *characterSprite);
+
+// handle player facing mouse
+void handle_mouse(sfRenderWindow *window, sfVector2i *mousePos, sfVector2f *mousePosWorld,
+    sfSprite *characterSprite, float *angle);
+void set_origin_character(sfTexture *characterTexture, sfSprite *characterSprite);
 
 #endif /* !GAME_JAM_H_ */
