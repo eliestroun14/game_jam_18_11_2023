@@ -47,7 +47,10 @@ void game()
                 if (event.type == sfEvtClosed) {
                     sfRenderWindow_close(window);
                 }
+                if (event.type == sfEvtKeyPressed && sfKeyboard_isKeyPressed(sfKeyEscape))
+                    resume_menu(window);
             }
+
             handle_mouse(window, &mousePos, &mousePosWorld, characterSprite, &angle);
 
             sfSprite_setRotation(characterSprite, angle + 270);
@@ -72,6 +75,7 @@ int main(void)
     sfVideoMode mode = {1184, 992, 64};
     sfRenderWindow *window = window_init(mode);
 
+    sfEvent event;
     while (sfRenderWindow_isOpen(window)) {
         if (!game_status)
             menu(window, &game_status);

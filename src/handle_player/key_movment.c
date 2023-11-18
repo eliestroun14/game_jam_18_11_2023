@@ -15,7 +15,7 @@ void check_movement(sfVector2f *characterPosition, sfSprite *characterSprite, sf
 {
     float moveAmount = 2.0f; // Adjust movement speed as needed
 
-    if (sfKeyboard_isKeyPressed(sfKeyLeft)) {
+    if (sfKeyboard_isKeyPressed(sfKeyQ)) {
         sfVector2f nextPosition = *characterPosition;
         nextPosition.x -= moveAmount;
 
@@ -24,7 +24,7 @@ void check_movement(sfVector2f *characterPosition, sfSprite *characterSprite, sf
             *characterPosition = nextPosition;
             sfSprite_setPosition(characterSprite, *characterPosition);
         }
-    } else if (sfKeyboard_isKeyPressed(sfKeyRight)) {
+    } else if (sfKeyboard_isKeyPressed(sfKeyD)) {
         sfVector2f nextPosition = *characterPosition;
         nextPosition.x += moveAmount;
 
@@ -32,7 +32,7 @@ void check_movement(sfVector2f *characterPosition, sfSprite *characterSprite, sf
             *characterPosition = nextPosition;
             sfSprite_setPosition(characterSprite, *characterPosition);
         }
-    } else if (sfKeyboard_isKeyPressed(sfKeyUp)) {
+    } else if (sfKeyboard_isKeyPressed(sfKeyZ)) {
         sfVector2f nextPosition = *characterPosition;
         nextPosition.y -= moveAmount;
 
@@ -40,7 +40,7 @@ void check_movement(sfVector2f *characterPosition, sfSprite *characterSprite, sf
             *characterPosition = nextPosition;
             sfSprite_setPosition(characterSprite, *characterPosition);
         }
-    } else if (sfKeyboard_isKeyPressed(sfKeyDown)) {
+    } else if (sfKeyboard_isKeyPressed(sfKeyS)) {
         sfVector2f nextPosition = *characterPosition;
         nextPosition.y += moveAmount;
 
