@@ -13,6 +13,8 @@
 #include <stdio.h>
 #include <math.h>
 
-int initialize(sfRenderWindow *window, sfTexture *mapTexture, sfTexture *characterTexture, sfVideoMode mode);
+sfRenderWindow *window_init(sfVideoMode mode);
+sfTexture *map_texture_init(void);
+sfTexture *character_texture_init(void);
 
 #endif /* !GAME_JAM_H_ */

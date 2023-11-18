@@ -13,36 +13,51 @@
 
 int main() {
     sfVideoMode mode = {1200, 1000, 64};
-    sfRenderWindow *window;
-    sfTexture *mapTexture;
+    sfRenderWindow *window = window_init(mode);
+    sfTexture *mapTexture = map_texture_init();
+    sfTexture *characterTexture = character_texture_init();
     sfSprite *mapSprite;
     sfEvent event;
-    sfTexture *characterTexture;
     sfSprite *characterSprite;
 
-    if (initialize(window, mapTexture, characterTexture, mode) == 84) {
-        printf("an error occured while initializing");
-        exit(84);
-    }
-
     mapSprite = sfSprite_create();
+    characterSprite = sfSprite_create();
 
     sfSprite_setTexture(mapSprite, mapTexture, sfTrue);
+    sfSprite_setTexture(characterSprite, characterTexture, sfTrue);
 
     sfRenderWindow_setFramerateLimit(window, 60);
 
+    // Set initial position for the character sprite
+    sfVector2f characterPosition = {200.0f, 200.0f};
+    sfSprite_setPosition(characterSprite, characterPosition);
+
     while (sfRenderWindow_isOpen(window)) {
-        while (sfRenderWindow_pollEvent(window, &event)) {
-            if (event.type == sfEvtClosed) {
-                sfRenderWindow_close(window);
+            while (sfRenderWindow_pollEvent(window, &event)) {
+                if (event.type == sfEvtClosed) {
+                    sfRenderWindow_close(window);
+                }
             }
+
+            // Example: Move the character using arrow keys
+            if (sfKeyboard_isKeyPressed(sfKeyLeft)) {
+                characterPosition.x -= 2.0f; // Adjust the character's position
+                sfSprite_setPosition(characterSprite, characterPosition); // Update the character's position
+            } else if (sfKeyboard_isKeyPressed(sfKeyRight)) {
+                characterPosition.x += 2.0f;
+                sfSprite_setPosition(characterSprite, characterPosition);
+            }
+
+            sfRenderWindow_clear(window, sfBlack);
+            sfRenderWindow_drawSprite(window, mapSprite, NULL);
+            sfRenderWindow_drawSprite(window, characterSprite, NULL); // Draw the character sprite
+            sfRenderWindow_display(window);
         }
-        sfRenderWindow_clear(window, sfBlack);
-        sfRenderWindow_drawSprite(window, mapSprite, NULL);
-        sfRenderWindow_display(window);
-    }
+    
     sfSprite_destroy(mapSprite);
+    sfSprite_destroy(characterSprite);
     sfTexture_destroy(mapTexture);
+    sfTexture_destroy(characterTexture);
     sfRenderWindow_destroy(window);
     return 0;
 }
