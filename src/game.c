@@ -20,9 +20,9 @@ int main() {
     sfTexture *characterTexture;
     sfSprite *characterSprite;
 
-    if (initialize(&window, &mapTexture, &characterTexture, mode) == 84) {
+    if (initialize(window, mapTexture, characterTexture, mode) == 84) {
         printf("an error occured while initializing");
-        return 84;
+        exit(84);
     }
 
     mapSprite = sfSprite_create();
