@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include <math.h>
 
-int main(void)
+void game()
 {
     sfVideoMode mode = {1000, 838, 64};
     sfRenderWindow *window = window_init(mode);
@@ -48,7 +48,6 @@ int main(void)
                     sfRenderWindow_close(window);
                 }
             }
-
             handle_mouse(window, &mousePos, &mousePosWorld, characterSprite, &angle);
 
             sfSprite_setRotation(characterSprite, angle + 270);
@@ -57,13 +56,25 @@ int main(void)
 
             sfRenderWindow_clear(window, sfBlack);
             sfRenderWindow_drawSprite(window, mapSprite, NULL);
-            sfRenderWindow_drawSprite(window, characterSprite, NULL); // Draw the character sprite
+            sfRenderWindow_drawSprite(window, characterSprite, NULL);
             sfRenderWindow_display(window);
         }
     sfSprite_destroy(mapSprite);
     sfSprite_destroy(characterSprite);
     sfTexture_destroy(mapTexture);
     sfTexture_destroy(characterTexture);
+    sfRenderWindow_destroy(window);
+}
+
+int main(void)
+{
+    sfVideoMode mode = {1184, 992, 64};
+    sfRenderWindow *window = window_init(mode);
+
+    while (sfRenderWindow_isOpen(window)) {
+            menu(window);
+            game();
+        }
     sfRenderWindow_destroy(window);
     return 0;
 }

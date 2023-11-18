@@ -13,7 +13,7 @@ SRC		+= ./src/handle_player/key_movment.c
 SRC		+= ./src/anex/calculate_angle.c
 SRC		+= ./src/handle_player/handle_collisions.c
 SRC		+= ./src/handle_player/handle_mouse.c
-
+SRC		+= ./src/main_menu.c
 
 LDFLAGS	= -L. -I include/
 
