@@ -40,7 +40,7 @@ void game(int *gamestatus)
     sfSprite_setTexture(mapSprite, mapTexture, sfTrue);
     sfSprite_setTexture(characterSprite, characterTexture, sfTrue);
 
-    sfVector2f characterPosition = {500.0f, 200.0f};
+    sfVector2f characterPosition = {605.0f, 800.0f};
     sfSprite_setPosition(characterSprite, characterPosition);
 
     sfVector2f scaleFactor = {0.7f, 0.7f};
