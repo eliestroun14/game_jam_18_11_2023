@@ -24,7 +24,7 @@ static int check_event(sfRenderWindow *window, sfEvent *event)
     }
 }
 
-void resume_menu(sfRenderWindow *window, int *gamestatus)
+int resume_menu(sfRenderWindow *window, int *gamestatus)
 {
     sfEvent event;
     sfTexture *background = sfTexture_createFromFile("assets/resume_menu/background.png", NULL);
@@ -44,7 +44,7 @@ void resume_menu(sfRenderWindow *window, int *gamestatus)
         if (check_event(window, &event) == 1) {
             sfSprite_destroy(bg_sprite);
             sfTexture_destroy(background);
-            return;
+            return 84;
         }
         sfRenderWindow_clear(window, sfBlack);
         sfRenderWindow_drawSprite(window, bg_sprite, NULL);
@@ -53,7 +53,7 @@ void resume_menu(sfRenderWindow *window, int *gamestatus)
         display_menu_button(window, scale_button, pos_button03);
         sfRenderWindow_display(window);
         if (is_resume(window, event, gamestatus) == 1)
-            return;
+            return 84;
         if (is_restart(window, event, gamestatus) == 1) {
             return main();
         }

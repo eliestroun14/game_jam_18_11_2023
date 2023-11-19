@@ -28,6 +28,7 @@ int is_restart(sfRenderWindow *window, sfEvent event, int *gamestarter) /* resta
         if (event.type == sfEvtMouseButtonPressed) {
             *gamestarter = 1;
             printf("Restarting the game.\n");
+            sfRenderWindow_destroy(window);
             return 1;
         }
         return 0;
@@ -42,6 +43,8 @@ int is_menu(sfRenderWindow *window, sfEvent event, int *gamestarter) /* goes bac
         if (event.type == sfEvtMouseButtonPressed) {
             *gamestarter = 0;
             printf("Retour au menu principal.\n");
+            sfRenderWindow_destroy(window);
+            return 1;
         }
         return 0;
     }

@@ -14,6 +14,9 @@
 #include <math.h>
 
     #define M_PI 3.14159265358979323846
+
+int main(void);
+int check_game_status(sfRenderWindow *window, int *game_status);
 // anex
 float calculateAngle(sfVector2f point1, sfVector2f point2);
 
@@ -36,6 +39,13 @@ int checkCollision(sfVector2f position, sfImage* collisionMap);
 
 // menu
 void menu(sfRenderWindow *window, int *gamestarted);
+int resume_menu(sfRenderWindow *window, int *gamestatus);
+void display_resume_button(sfRenderWindow *window, sfVector2f scale, sfVector2f pos);
+void display_restart_button(sfRenderWindow *window, sfVector2f scale, sfVector2f pos);
+void display_menu_button(sfRenderWindow *window, sfVector2f scale, sfVector2f pos);
+int is_resume(sfRenderWindow *window, sfEvent event, int *gamestarter);
+int is_restart(sfRenderWindow *window, sfEvent event, int *gamestarter);
+int is_menu(sfRenderWindow *window, sfEvent event, int *gamestarter);
 void if_click_quit(sfRenderWindow *window, sfEvent event, int *gamestarted);
 void if_click_play(sfRenderWindow *window, sfEvent event, int *gameStarted);
 

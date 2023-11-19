@@ -11,6 +11,11 @@
 #include <stdio.h>
 #include <math.h>
 
+void handle_mouse_click(sfMouseButtonEvent event)
+{
+    printf("Mouse x=%d y=%d\n", event.x, event.y);
+}
+
 void game(int *gamestatus)
 {
     sfVideoMode mode = {1000, 838, 64};
@@ -49,6 +54,8 @@ void game(int *gamestatus)
                 }
                 if (event.type == sfEvtKeyPressed && sfKeyboard_isKeyPressed(sfKeyEscape))
                     resume_menu(window, gamestatus);
+                if (event.type == sfEvtMouseButtonPressed)
+                    handle_mouse_click(event.mouseButton);
             }
 
             handle_mouse(window, &mousePos, &mousePosWorld, characterSprite, &angle);
@@ -69,6 +76,14 @@ void game(int *gamestatus)
     sfRenderWindow_destroy(window);
 }
 
+//int check_game_status(sfRenderWindow *window, int *game_status)
+//{
+//    if (!game_status)
+//        menu(window, &game_status);
+//    if (game_status == 1)
+//        game(&game_status);
+//}
+
 int main(void)
 {
     int game_status = 0;
@@ -79,7 +94,7 @@ int main(void)
     while (sfRenderWindow_isOpen(window)) {
         if (!game_status)
             menu(window, &game_status);
-        if (game_status)
+        if (game_status == 1)
             game(&game_status);
     }
     sfRenderWindow_destroy(window);
