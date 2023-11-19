@@ -17,6 +17,7 @@ SRC		+= ./src/main_menu.c
 SRC		+= ./src/resume_menu/display_buttons.c
 SRC		+= ./src/resume_menu/resume_menu.c
 SRC		+= ./src/resume_menu/check_pressed_button.c
+SRC		+= ./src/handle_ghosts/ghost_init.c
 
 LDFLAGS	= -L. -I include/
 

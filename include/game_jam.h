@@ -15,6 +15,15 @@
 
     #define M_PI 3.14159265358979323846
 
+typedef struct ghost {
+    sfSprite* sprite;
+    sfVector2f velocity;
+} ghost_t;
+
+// handle mobs
+void initialize_ghost(ghost_t *ghost, sfTexture *ghostTexture);
+void update_ghost(ghost_t *ghost, sfVector2f playerPosition);
+
 int main(void);
 int check_game_status(sfRenderWindow *window, int *game_status);
 // anex
