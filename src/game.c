@@ -12,24 +12,28 @@
 #include <math.h>
 #include <stdbool.h>
 
-void handle_kill_ghost(int *numGhosts, ghost_t ghosts[], sfVector2i *mouseClickPos)
+void handle_kill_ghost(int *numGhosts, ghost_t ghosts[], sfVector2i *mouseClickPos, sfTexture *ghostTexture)
 {
-    printf("Mouse click position: x=%d, y=%d\n", mouseClickPos->x, mouseClickPos->y);
+    int ghostKilled = 0;
 
     for (int i = 0; i < *numGhosts; ++i) {
         sfFloatRect ghostBounds = sfSprite_getGlobalBounds(ghosts[i].sprite);
 
-        // Check if the mouse click was inside the bounding box of the ghost sprite
         if (sfFloatRect_contains(&ghostBounds, mouseClickPos->x, mouseClickPos->y)) {
-            // Remove the ghost by shifting elements in the array
             for (int j = i; j < *numGhosts - 1; ++j) {
                 ghosts[j] = ghosts[j + 1];
             }
-            (*numGhosts)--; // Reduce the number of ghosts in the array
-            break; // Exit the loop after removing the clicked ghost
+            (*numGhosts)--;
+            ghostKilled = 1;
+            break;
         }
     }
+    // Respawn a new ghost outside the loop if a ghost was killed
+    if (ghostKilled) {
+        initialize_ghost(&ghosts[*numGhosts], ghostTexture);
+    }
 }
+
 
 void handle_mouse_click(sfMouseButtonEvent event, int *ghostclicked, sfVector2i *mouseClickPos)
 {
@@ -55,15 +59,15 @@ void game(int *gamestatus)
     if (!collisionMap)
         exit(84);
 
-    sfTexture *ghostTexture = sfTexture_createFromFile("assets/ghost1.png", NULL);
-    if (!ghostTexture)
+    sfTexture *ghosttexture = sfTexture_createFromFile("assets/ghost1.png", NULL);
+    if (!ghosttexture)
         exit(84);
 
-    int numGhosts = 5;
+    int numGhosts = 10;
     ghost_t ghosts[numGhosts];
 
     for (int i = 0; i < numGhosts; ++i) {
-        initialize_ghost(&ghosts[i], ghostTexture);
+        initialize_ghost(&ghosts[i], ghosttexture);
     }
 
     sfVector2i mouseClickPos = {0, 0};
@@ -93,8 +97,9 @@ void game(int *gamestatus)
                 if (event.type == sfEvtMouseButtonPressed)
                     handle_mouse_click(event.mouseButton, &ghostclicked, &mouseClickPos);
             }
+
             if (ghostclicked == 1)
-                handle_kill_ghost(&numGhosts, ghosts, &mouseClickPos);
+                handle_kill_ghost(&numGhosts, ghosts, &mouseClickPos, ghosttexture);
             for (int i = 0; i < numGhosts; ++i)
                 update_ghost(&ghosts[i], characterPosition);
 
@@ -118,7 +123,7 @@ void game(int *gamestatus)
     for (int i = 0; i < numGhosts; ++i) {
         sfSprite_destroy(ghosts[i].sprite);
     }
-    sfTexture_destroy(ghostTexture);
+    sfTexture_destroy(ghosttexture);
 }
 
 int main(void)
